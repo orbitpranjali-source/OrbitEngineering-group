@@ -298,3 +298,4 @@ export default function FAQPage({ onNavigate }: FAQPageProps) {
     </div>
   );
 }
+
