@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Sync Water Tech Pvt Ltd - Corporate Website
 
 A professional, elegant, and responsive website for Sync Water Tech Pvt Ltd, showcasing their water infrastructure solutions and innovative technology.
@@ -128,3 +129,6 @@ The website includes the following contact details that can be updated in the re
 - Case study detail pages
 - Search functionality
 - Multi-language support
+=======
+# OrbitEngineering-2
+>>>>>>> 446fbf69c892490fcdcf7b7755b1e23d34b28609
