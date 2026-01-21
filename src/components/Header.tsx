@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Menu, X, ChevronDown, Waves, Activity, Settings, Cpu, Camera, Wrench, Gauge, Droplets, Grid, Zap, Sun } from 'lucide-react';
-import logo2 from '/src/assets/Orbit LOGO.png';
+import logo2 from '../assets/Orbit LOGO.png';
 
 interface HeaderProps {
   onNavigate: (page: string) => void;
