@@ -1,5 +1,5 @@
 import { useState, lazy, Suspense, useMemo, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useNavigate, useLocation, useParams } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Routes, Route, useNavigate, useLocation, useParams } from 'react-router-dom';
 import { ArrowUp } from 'lucide-react';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -157,9 +157,14 @@ function AppContent() {
 }
 
 export default function App() {
+  // Use HashRouter for GitHub Pages to avoid 404s on refresh (since GH Pages doesn't support SPA routing natively),
+  // but use BrowserRouter for other environments (like Vercel/Netlify/Localhost) for better SEO and clean URLs.
+  const isGitHubPages = window.location.hostname.includes('github.io');
+  const Router = isGitHubPages ? HashRouter : BrowserRouter;
+
   return (
-    <BrowserRouter>
+    <Router>
       <AppContent />
-    </BrowserRouter>
+    </Router>
   );
 }

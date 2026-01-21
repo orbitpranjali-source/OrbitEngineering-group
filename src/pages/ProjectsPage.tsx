@@ -173,14 +173,7 @@ export default function ProjectsPage({ initialFilter = 'all', onNavigate }: Proj
     }
   };
 
-  // Scroll to section function
-  const scrollToSection = (section: 'completed' | 'ongoing') => {
-    const targetRef = section === 'completed' ? completedRef : ongoingRef;
-    targetRef.current?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    });
-  };
+
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -208,8 +201,8 @@ export default function ProjectsPage({ initialFilter = 'all', onNavigate }: Proj
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
               className={`relative z-30 flex items-center px-6 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 cursor-pointer font-semibold ${filter === 'all'
-                  ? 'bg-gradient-to-r from-gray-700 to-gray-900 text-white scale-105'
-                  : 'bg-white text-gray-700 hover:bg-gray-50'
+                ? 'bg-gradient-to-r from-gray-700 to-gray-900 text-white scale-105'
+                : 'bg-white text-gray-700 hover:bg-gray-50'
                 }`}
             >
               <Building2 className="h-5 w-5 mr-2" />
@@ -220,8 +213,8 @@ export default function ProjectsPage({ initialFilter = 'all', onNavigate }: Proj
                 setFilter('completed');
               }}
               className={`relative z-30 flex items-center px-6 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 cursor-pointer font-semibold ${filter === 'completed'
-                  ? 'bg-gradient-to-r from-green-500 to-green-600 text-white scale-105'
-                  : 'bg-white text-gray-700 hover:bg-green-50 hover:text-green-600'
+                ? 'bg-gradient-to-r from-green-500 to-green-600 text-white scale-105'
+                : 'bg-white text-gray-700 hover:bg-green-50 hover:text-green-600'
                 }`}
             >
               <CheckCircle2 className="h-5 w-5 mr-2" />
@@ -232,8 +225,8 @@ export default function ProjectsPage({ initialFilter = 'all', onNavigate }: Proj
                 setFilter('ongoing');
               }}
               className={`relative z-30 flex items-center px-6 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 cursor-pointer font-semibold ${filter === 'ongoing'
-                  ? 'bg-gradient-to-r from-[#0073bc] to-[#005a94] text-white scale-105'
-                  : 'bg-white text-gray-700 hover:bg-blue-50 hover:text-[#0073bc]'
+                ? 'bg-gradient-to-r from-[#0073bc] to-[#005a94] text-white scale-105'
+                : 'bg-white text-gray-700 hover:bg-blue-50 hover:text-[#0073bc]'
                 }`}
             >
               <Clock className="h-5 w-5 mr-2" />

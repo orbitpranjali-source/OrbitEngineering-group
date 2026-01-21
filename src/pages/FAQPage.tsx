@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import subHeadingImage from '../assets/products/sub-heading.jpg';
 import heroWaterImage from '../assets/products/hero-section.jpg';
-import { ChevronDown, HelpCircle, Droplet, Sun, Layers, PenTool, LayoutGrid } from 'lucide-react';
+import { ChevronDown, HelpCircle, Droplet, Sun, Layers, LayoutGrid } from 'lucide-react';
 
 interface FAQPageProps {
   onNavigate?: (page: string) => void;
@@ -11,7 +11,18 @@ interface FAQPageProps {
 export default function FAQPage({ onNavigate }: FAQPageProps) {
   const [openSectionIndex, setOpenSectionIndex] = useState<string | null>('0-0');
 
-  const sections = [
+  interface FAQItem {
+    question: string;
+    answer: React.ReactNode;
+  }
+
+  interface FAQSection {
+    title: string;
+    icon: React.ElementType;
+    faqs: FAQItem[];
+  }
+
+  const sections: FAQSection[] = [
     {
       title: 'Understanding Our Water Treatment Plant (WTP)',
       icon: Droplet,
@@ -160,7 +171,11 @@ export default function FAQPage({ onNavigate }: FAQPageProps) {
         },
         {
           question: 'How can I contact your customer support team?',
-          answer: <>You can contact our customer support team by phone, email, or through our website contact form. Our team is available to assist you with any questions: <a href="mailto:info@orbitengineerings.com" className="text-[#0073bc] hover:underline">info@orbitengineerings.com</a></>
+          answer: (
+            <span>
+              You can contact our customer support team by phone, email, or through our website contact form. Our team is available to assist you with any questions: <a href="mailto:info@orbitengineerings.com" className="text-[#0073bc] hover:underline">info@orbitengineerings.com</a>
+            </span>
+          )
         }
       ]
     }
@@ -172,13 +187,14 @@ export default function FAQPage({ onNavigate }: FAQPageProps) {
   };
 
   const highlightKeywords = (text: string) => {
+    if (!text) return text;
     const keywords = ['WTP', 'Solar', 'Products', 'Technologies'];
     const parts = text.split(new RegExp(`(${keywords.join('|')})`, 'g'));
     return parts.map((part, i) => keywords.includes(part) ? <span key={i} className="text-[#0073bc]">{part}</span> : part);
   };
 
   // Animation variants
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -188,7 +204,7 @@ export default function FAQPage({ onNavigate }: FAQPageProps) {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
   };
@@ -256,6 +272,7 @@ export default function FAQPage({ onNavigate }: FAQPageProps) {
                       <AnimatePresence>
                         {isOpen && (
                           <motion.div
+                            key="content"
                             initial={{ height: 0, opacity: 0 }}
                             animate={{ height: "auto", opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
