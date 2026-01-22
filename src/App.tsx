@@ -163,7 +163,7 @@ export default function App() {
   const Router = isGitHubPages ? HashRouter : BrowserRouter;
 
   return (
-    <Router>
+    <Router basename={!isGitHubPages ? import.meta.env.BASE_URL : undefined}>
       <AppContent />
     </Router>
   );

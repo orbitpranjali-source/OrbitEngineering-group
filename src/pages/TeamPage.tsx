@@ -11,10 +11,23 @@ import office2 from '../assets/Office-2.png';
 import reception from '../assets/reception.png';
 
 function OfficeImages() {
-  const imageReveal = {
-    hidden: { y: "100%" },
+  const slideRight = {
+    hidden: { x: -100, opacity: 0 },
     visible: {
-      y: "0%",
+      x: 0,
+      opacity: 1,
+      transition: {
+        duration: 1.2,
+        ease: [0.25, 0.1, 0.25, 1.0] as const
+      }
+    }
+  };
+
+  const slideLeft = {
+    hidden: { x: 100, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
       transition: {
         duration: 1.2,
         ease: [0.25, 0.1, 0.25, 1.0] as const
@@ -31,7 +44,7 @@ function OfficeImages() {
             alt="Orbit Engineering Group Office"
             loading="lazy"
             className="w-full h-full object-cover"
-            variants={imageReveal}
+            variants={slideRight}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-10%" }}
@@ -46,7 +59,7 @@ function OfficeImages() {
             alt="Orbit Engineering Reception"
             loading="lazy"
             className="w-full h-full object-cover"
-            variants={imageReveal}
+            variants={slideLeft}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-10%" }}
@@ -73,7 +86,8 @@ export default function TeamPage() {
       experience: '18+ Years Experience',
       email: 'vijay@orbitengineerings.com',
       description: 'Technical expert specializing in automation, IoT, and advanced water treatment systems',
-      photo: vijayImg
+      photo: vijayImg,
+      imagePosition: 'top'
     }
   ];
 
@@ -141,6 +155,7 @@ export default function TeamPage() {
           </div>
 
           <MotionStagger className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto" stagger={0.06}>
+            {/* @ts-ignore */}
             {team.map((member, index) => (
               <motion.div
                 key={index}
@@ -158,6 +173,7 @@ export default function TeamPage() {
                     alt={`${member.name} - ${member.role} at Orbit Engineering Group Bhopal`}
                     className="w-36 h-36 rounded-full object-cover mx-auto mb-6 ring-4 ring-[#0073bc]/10 shadow-sm"
                     loading="lazy"
+                    style={{ objectPosition: (member as any).imagePosition || 'center' }}
                   />
                 ) : (
                   <div className="bg-gradient-to-br from-[#0073bc] to-[#005a94] rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-6">
