@@ -51,6 +51,10 @@ import smartWatermeter from '../assets/products/smart-watermeter.jpg';
 import utility from '../assets/products/utility.jpg';
 import bodAnalyzer from '../assets/products/bod-analyzer.png';
 import codAnalyzer from '../assets/products/cod-analyzer.png';
+import pressureSensor2 from '../assets/products/pressure sensor-2.png';
+import pressureSensor1 from '../assets/products/pressure-sensor-1.png';
+import pressureSensorDiff from '../assets/products/pressure-sensor-.png';
+import submersibleLevelTransmitter from '../assets/products/level-transmitter.png';
 
 
 
@@ -301,8 +305,9 @@ export const RAW_SUB_PRODUCTS = [
       },
     ]
   },
+
   {
-    category: 'Levels',
+    category: 'Level Transmitter',
     items: [
       {
         name: 'Capacitance Level Transmitter',
@@ -319,32 +324,6 @@ export const RAW_SUB_PRODUCTS = [
           'Chemicals with dense gas layers above the surface',
           'High pressure high temperature or vacuum',
           'Viscous or corrosive media'
-        ]
-      },
-      {
-        name: 'Conductive Level Switch',
-        image: conductiveLevelSwitch,
-        bullets: [
-          'Limit switch or differential switch versions',
-          'Adjustable sensitivity',
-          'Adjustable time delay',
-          'High or low fail-safe mode',
-          'All wetted parts stainless steel',
-          'Compact unit with two independent relays',
-          'Separate probe and relay unit',
-          'Rod probes up to 3 m'
-        ]
-      },
-      {
-        name: 'Float Level Switch',
-        image: floatLevelSwitch,
-        bullets: [
-          'Operation without power supply',
-          'Low cost polypropylene level switch',
-          'Hermetically moulded double chamber',
-          'Mercury free micro switch',
-          'Adjustable switch differential',
-          'For low density liquids'
         ]
       },
       {
@@ -385,6 +364,46 @@ export const RAW_SUB_PRODUCTS = [
           'For challenging applications such as long distance measurement and light dust during filling'
         ]
       },
+      {
+        name: 'Submersible Level Transmitter',
+        image: submersibleLevelTransmitter,
+        bullets: [
+          'Uses hydrostatic pressure principle for tanks/wells',
+          '4–20 mA output',
+          'Fully sealed and corrosion-resistant'
+        ]
+      }
+    ]
+  },
+  {
+    category: 'Level Switch',
+    items: [
+      {
+        name: 'Conductive Level Switch',
+        image: conductiveLevelSwitch,
+        bullets: [
+          'Limit switch or differential switch versions',
+          'Adjustable sensitivity',
+          'Adjustable time delay',
+          'High or low fail-safe mode',
+          'All wetted parts stainless steel',
+          'Compact unit with two independent relays',
+          'Separate probe and relay unit',
+          'Rod probes up to 3 m'
+        ]
+      },
+      {
+        name: 'Float Level Switch',
+        image: floatLevelSwitch,
+        bullets: [
+          'Operation without power supply',
+          'Low cost polypropylene level switch',
+          'Hermetically moulded double chamber',
+          'Mercury free micro switch',
+          'Adjustable switch differential',
+          'For low density liquids'
+        ]
+      }
     ]
   },
   {
@@ -662,6 +681,44 @@ export const RAW_SUB_PRODUCTS = [
           '3000+ weld record memory',
           'Temperature compensation',
           '20-800mm welding range'
+        ]
+      }
+    ]
+  },
+  {
+    category: 'Pressure Sensor',
+    items: [
+      {
+        name: 'Digital Pressure Sensor',
+        image: pressureSensor2,
+        paragraphs: ['Electronic device for liquid/gas pressure; converts to digital signal; features high accuracy, LED/LCD display, compact design.'],
+        bullets: [
+          'Electronic device for liquid/gas pressure',
+          'Converts to digital signal',
+          'High accuracy',
+          'LED/LCD display',
+          'Compact design'
+        ]
+      },
+      {
+        name: 'Electronic Pressure Sensor',
+        image: pressureSensor1,
+        paragraphs: ['Industrial use for PLCs/Controllers; stainless-steel construction; rugged design for harsh environments.'],
+        bullets: [
+          'Industrial use for PLCs/Controllers',
+          'Stainless-steel construction',
+          'Rugged design',
+          'Harsh environment ready'
+        ]
+      },
+      {
+        name: 'Differential Pressure Sensor',
+        image: pressureSensorDiff,
+        paragraphs: ['Measures difference between HP and LP points; used for flow/filter monitoring; stainless steel manifold.'],
+        bullets: [
+          'Measures difference between HP and LP points',
+          'Used for flow/filter monitoring',
+          'Stainless steel manifold'
         ]
       }
     ]

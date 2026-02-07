@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Gauge, Activity, Zap, Camera, Wrench, BarChart3, CheckCircle, ArrowRight, FlaskConical, Sun, Waves, Download } from 'lucide-react';
+import { Gauge, Activity, Zap, Camera, Wrench, CheckCircle, ArrowRight, FlaskConical, Sun, Waves, Download } from 'lucide-react';
 import { RAW_SUB_PRODUCTS } from '../data/rawProducts';
 import { MotionFadeUp, AnimatedHeading } from '../components/Animated';
 import QuoteModal from '../components/QuoteModal';
@@ -54,8 +54,8 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
 
   const renderGallery = (categoryName: string, subtitle: string) => {
     const items = getItemsByCategory(categoryName);
-    // Check if current variant is flow-meters, automation, or has exactly 2 items to apply specific grid layout
-    const isTwoColumnLayout = variant === 'flow-meters' || variant === 'automation' || items.length === 2;
+    // Check if current variant is flow-meters, automation, or has exactly 2 or 4 items to apply specific grid layout
+    const isTwoColumnLayout = variant === 'flow-meters' || variant === 'automation' || items.length === 2 || items.length === 4;
 
     return (
       <section className="py-16 bg-gray-50">
@@ -185,14 +185,14 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
     },
     'levels': {
       title: 'Levels',
-      description: 'Accurate and reliable level measurement solutions for various industrial applications.',
+      description: 'Complete range of level measurement and switching solutions for all industrial applications.',
       icon: Waves,
       features: [
         'Contact and non-contact measurement',
-        'High accuracy and reliability',
+        'High reliability switches',
         'Various mounting options',
         'Suitable for corrosive environments',
-        'Digital display integration',
+        'Digital signals and relay outputs',
         'Easy installation and maintenance'
       ],
       applications: [
@@ -200,16 +200,59 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
         'Water treatment plants',
         'Chemical storage tanks',
         'Sump and pit monitoring',
-        'Open channel flow measurement',
-        'Pump control'
+        'Pump control',
+        'Overfill protection'
       ],
       specifications: [
-        { parameter: 'Range', value: 'Up to 20m (Ultrasonic)' },
+        { parameter: 'Range', value: 'Up to 20m' },
         { parameter: 'Accuracy', value: '±0.25% (Hydrostatic)' },
         { parameter: 'Output', value: '4-20mA, Relay' },
         { parameter: 'Material', value: 'SS316, PP, PVDF' },
         { parameter: 'Protection', value: 'IP67/IP68' },
         { parameter: 'Temp Range', value: '-20°C to +80°C' }
+      ]
+    },
+    'level-transmitter': {
+      title: 'Level Transmitter',
+      description: 'Accurate continuous level measurement for liquids and solids.',
+      icon: Waves,
+      features: [
+        'High precision measurement',
+        'Submersible & Non-contact options',
+        'HART Communication',
+        'Corrosion resistant materials',
+        'Long-term stability'
+      ],
+      applications: [
+        'Deep well monitoring',
+        'Reservoir level',
+        'Chemical tanks',
+        'Wastewater lift stations'
+      ],
+      specifications: [
+        { parameter: 'Tech', value: 'Ultrasonic, Hydrostatic, Capacitance' },
+        { parameter: 'Output', value: '4-20mA' },
+        { parameter: 'Range', value: '0-200m' }
+      ]
+    },
+    'level-switch': {
+      title: 'Level Switch',
+      description: 'Reliable point level detection for alarms and control.',
+      icon: Waves,
+      features: [
+        'Simple robust design',
+        'No power required (Float)',
+        'Multiple switch points',
+        'Adjustable sensitivity'
+      ],
+      applications: [
+        'Pump protection',
+        'High/Low alarm',
+        'Tank filling control'
+      ],
+      specifications: [
+        { parameter: 'Type', value: 'Float, Conductive' },
+        { parameter: 'Rating', value: '5A / 230VAC' }
       ]
     },
     'valves': {
@@ -328,7 +371,28 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
         { parameter: 'Standards', value: 'ISO 21307, ASTM F2620' }
       ]
     },
-    'rosemount': {
+    'pressure': {
+      title: 'Pressure',
+      description: 'Complete Pressure Measurement Solutions ranging from sensors to advanced transmitters.',
+      icon: Gauge,
+      features: [
+        'Wide measuring ranges',
+        'Digital and Analog outputs',
+        'High accuracy and stability',
+        'Rugged industrial design'
+      ],
+      applications: [
+        'Process pressure monitoring',
+        'Differential pressure flow',
+        'Tank level measurement',
+        'Hydraulic systems'
+      ],
+      specifications: [
+        { parameter: 'Range', value: 'Vacuum to 1000 bar' },
+        { parameter: 'Output', value: '4-20mA, 0-10V, Digital' }
+      ]
+    },
+    'pressure-transmitter': {
       title: 'Pressure Transmitter',
       description: 'Ultra-high performance pressure transmitter with coplanar design for demanding flow and level applications.',
       icon: Gauge,
@@ -355,6 +419,27 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
         { parameter: 'Response Time', value: '< 100ms' },
         { parameter: 'Ambient Temperature', value: '-40°C to +85°C' },
         { parameter: 'Process Temperature', value: '-40°C to +120°C' }
+      ]
+    },
+    'pressure-sensor': {
+      title: 'Pressure Sensor',
+      description: 'Versatile pressure sensors for industrial and commercial applications.',
+      icon: Gauge, // Or different icon
+      features: [
+        'Compact design',
+        'High reliability',
+        'Cost effective',
+        'Fast response'
+      ],
+      applications: [
+        'Machine automation',
+        'Pneumatics',
+        'HVAC',
+        'Pump control'
+      ],
+      specifications: [
+        { parameter: 'Accuracy', value: '±0.5% FS' },
+        { parameter: 'Output', value: 'Analog / Digital' }
       ]
     },
     'chlorinators': {
@@ -464,7 +549,7 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
         <div className="absolute top-4 right-4 md:top-8 md:right-8 z-30">
           <button
             onClick={() => handleGetQuote(page.title)}
-            className="bg-white text-[#0073bc] hover:bg-blue-50 font-bold py-2 px-6 md:py-3 md:px-8 rounded-full shadow-lg transition-transform transform hover:scale-105 flex items-center space-x-2"
+            className="bg-white text-[#0073bc] hover:bg-blue-50 font-bold py-2 px-6 md:py-3 md:px-8 rounded-full shadow-lg transition-transform transform hover:scale-110 flex items-center space-x-2"
           >
             <span>Get Quote</span>
             <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
@@ -488,12 +573,33 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
       {/* Product Galleries by Category */}
       {variant === 'flow-meters' && renderGallery('Flow', 'Explore our complete lineup of flow meters')}
       {variant === 'analyzers' && renderGallery('Analyzers', 'Advanced analyzers and transmitters for continuous monitoring')}
-      {variant === 'levels' && renderGallery('Levels', 'Accurate and reliable level measurement solutions')}
+
+      {/* Levels Pages */}
+      {variant === 'levels' && (
+        <>
+          {renderGallery('Level Transmitter', 'Level Transmitters')}
+          {renderGallery('Level Switch', 'Level Switches')}
+        </>
+      )}
+      {variant === 'level-transmitter' && renderGallery('Level Transmitter', 'Continuous Level Measurement')}
+      {variant === 'level-switch' && renderGallery('Level Switch', 'Point Level Detection')}
+
       {variant === 'valves' && renderGallery('Valves & Piping', 'Engineered valves and piping solutions for critical applications')}
       {variant === 'automation' && renderGallery('Automation (IoT / PLC / RTU / SCADA)', 'Integrated automation platforms for intelligent water management')}
       {variant === 'cameras' && renderGallery('Cameras & Vision', 'Rugged vision and surveillance systems for utilities')}
       {variant === 'jointing' && renderGallery('Jointing Machines', 'Professional jointing equipment for plastic piping systems')}
-      {variant === 'rosemount' && renderGallery('Pressure Transmitter', 'Premium models and options')}
+
+      {/* Pressure Pages */}
+      {variant === 'pressure' && (
+        <>
+          {renderGallery('Pressure Transmitter', 'Pressure Transmitters')}
+          {renderGallery('Pressure Sensor', 'Pressure Sensors')}
+        </>
+      )}
+      {variant === 'pressure-transmitter' && renderGallery('Pressure Transmitter', 'Premium Pressure Transmitters')}
+      {variant === 'pressure-sensor' && renderGallery('Pressure Sensor', 'Industrial Pressure Sensors')}
+
+
       {variant === 'transformers' && renderGallery('Transformers', 'High-performance power and distribution solutions')}
       {variant === 'solar' && renderGallery('Solar sensor', 'Sustainable solar energy and smart lighting solutions')}
       {variant === 'chlorinators' && renderGallery('Chlorinators', 'Reliable chlorination systems for water safety')}
