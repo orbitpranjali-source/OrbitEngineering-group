@@ -20,6 +20,7 @@ import iconCamera from '../assets/products/bullet-camera.jpg';
 import iconJointing from '../assets/products/electrofusion.jpeg';
 import iconPressure from '../assets/products/rosemount-3051s-series-coplanar-pressure-transmitter.jpg';
 import iconTransformer from '../assets/products/distribution-transformer.png';
+import iconLevel from '../assets/products/ultrasonic-level-tx.jpg';
 // Raw products now live in src/data/rawProducts to avoid HMR issues
 
 interface ProductsPageProps {
@@ -114,7 +115,7 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
       icon: Gauge,
       image: iconFlowMeter,
       page: 'product-info:flow-meters',
-      title: 'Flow Meters',
+      title: 'Flow',
       description: 'Precision flow measurement for all applications',
       features: [
         'Electromagnetic flow meters',
@@ -128,7 +129,7 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
       icon: Activity,
       image: iconAnalyzer,
       page: 'product-info:analyzers',
-      title: 'Analyzers & Transmitters',
+      title: 'Analyzers',
       description: 'Continuous online water quality monitoring',
       features: [
         'pH/ORP analyzers',
@@ -136,6 +137,20 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
         'Dissolved oxygen sensors',
         'Turbidity meters',
         'Multi-parameter systems'
+      ]
+    },
+    {
+      icon: Activity, // Using Activity icon or similar for Levels if needed, or import Waves
+      image: iconLevel,
+      page: 'product-info:levels',
+      title: 'Levels',
+      description: 'Accurate level calibration and measurement',
+      features: [
+        'Ultrasonic level transmitters',
+        'Hydrostatic level transmitters',
+        'Capacitance level transmitters',
+        'Level switches',
+        'Corrosion resistant'
       ]
     },
     {

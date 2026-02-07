@@ -7,6 +7,28 @@ interface HeaderProps {
   currentPage: string;
 }
 
+const FlowMeterIcon = (props: any) => (
+  <svg
+    {...props}
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <circle cx="12" cy="9" r="6" />
+    <path d="M12 9l2.5-2.5" />
+    <path d="M12 15v3" />
+    <path d="M3 18h18" />
+    <path d="M6 15v6" />
+    <path d="M18 15v6" />
+  </svg>
+);
+
 export default function Header({ onNavigate, currentPage }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
@@ -25,8 +47,9 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
   ];
 
   const productCategories = [
-    { label: 'Flow Meters', page: 'product-info:flow-meters', icon: Waves },
-    { label: 'Analyzers & Transmitters', page: 'product-info:analyzers', icon: Activity },
+    { label: 'Flow', page: 'product-info:flow-meters', icon: FlowMeterIcon },
+    { label: 'Analyzers', page: 'product-info:analyzers', icon: Activity },
+    { label: 'Levels', page: 'product-info:levels', icon: Waves },
     { label: 'Valves & Piping', page: 'product-info:valves', icon: Settings },
     { label: 'Automation (IoT / PLC / RTU / SCADA)', page: 'product-info:automation', icon: Cpu },
     { label: 'Cameras & Vision', page: 'product-info:cameras', icon: Camera },

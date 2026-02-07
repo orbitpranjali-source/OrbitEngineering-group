@@ -1,21 +1,51 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Gauge, Activity, Zap, Camera, Wrench, BarChart3, CheckCircle, ArrowRight, FlaskConical, Sun } from 'lucide-react';
+import { Gauge, Activity, Zap, Camera, Wrench, BarChart3, CheckCircle, ArrowRight, FlaskConical, Sun, Waves, Download } from 'lucide-react';
 import { RAW_SUB_PRODUCTS } from '../data/rawProducts';
 import { MotionFadeUp, AnimatedHeading } from '../components/Animated';
+import QuoteModal from '../components/QuoteModal';
 
 interface ProductInfoPageProps {
   variant?: string;
   onNavigate?: (page: string) => void;
 }
 
+const FlowMeterIcon = (props: any) => (
+  <svg
+    {...props}
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <circle cx="12" cy="9" r="6" />
+    <path d="M12 9l2.5-2.5" />
+    <path d="M12 15v3" />
+    <path d="M3 18h18" />
+    <path d="M6 15v6" />
+    <path d="M18 15v6" />
+  </svg>
+);
+
 export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
   const { variant: urlVariant } = useParams<{ variant: string }>();
   const variant = urlVariant; // Use URL param as the source of truth
   const [expandedMap, setExpandedMap] = useState<Record<string, boolean>>({});
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+  const [quoteProductName, setQuoteProductName] = useState('');
 
   const toggleExpanded = (key: string) => {
     setExpandedMap(prev => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const handleGetQuote = (productName: string) => {
+    setQuoteProductName(productName);
+    setIsQuoteModalOpen(true);
   };
 
   const getItemsByCategory = (categoryName: string) => {
@@ -54,6 +84,7 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
                   </div>
                   <div className="p-6 flex flex-col gap-4 flex-1">
                     <h3 className="text-xl font-bold text-gray-900 text-center">{item.name}</h3>
+
                     {hasDetails && (
                       <div className="mt-auto">
                         <button
@@ -64,6 +95,7 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
                         </button>
                       </div>
                     )}
+
                     <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isExpanded ? 'max-h-[520px] opacity-100' : 'max-h-0 opacity-0'}`}>
                       {firstParagraph && (
                         <p className="mt-3 text-gray-600 text-sm leading-6">{firstParagraph}</p>
@@ -95,9 +127,9 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
     image?: string;
   }> = {
     'flow-meters': {
-      title: 'Flow Meters',
+      title: 'Flow',
       description: 'Precision flow measurement solutions for water and wastewater treatment applications with advanced digital capabilities.',
-      icon: Gauge,
+      icon: FlowMeterIcon,
       features: [
         'High accuracy measurement (±0.5%)',
         'Digital signal processing',
@@ -123,7 +155,7 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
       ]
     },
     'analyzers': {
-      title: 'Analyzers & Transmitters',
+      title: 'Analyzers',
       description: 'Advanced online analyzers and intelligent transmitters for continuous water quality monitoring and process control.',
       icon: Activity,
       features: [
@@ -149,6 +181,35 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
         { parameter: 'Calibration Interval', value: '90 days' },
         { parameter: 'Communication', value: 'Modbus, Ethernet, Wireless' },
         { parameter: 'Power Supply', value: '24V DC or AC' }
+      ]
+    },
+    'levels': {
+      title: 'Levels',
+      description: 'Accurate and reliable level measurement solutions for various industrial applications.',
+      icon: Waves,
+      features: [
+        'Contact and non-contact measurement',
+        'High accuracy and reliability',
+        'Various mounting options',
+        'Suitable for corrosive environments',
+        'Digital display integration',
+        'Easy installation and maintenance'
+      ],
+      applications: [
+        'Tank level monitoring',
+        'Water treatment plants',
+        'Chemical storage tanks',
+        'Sump and pit monitoring',
+        'Open channel flow measurement',
+        'Pump control'
+      ],
+      specifications: [
+        { parameter: 'Range', value: 'Up to 20m (Ultrasonic)' },
+        { parameter: 'Accuracy', value: '±0.25% (Hydrostatic)' },
+        { parameter: 'Output', value: '4-20mA, Relay' },
+        { parameter: 'Material', value: 'SS316, PP, PVDF' },
+        { parameter: 'Protection', value: 'IP67/IP68' },
+        { parameter: 'Temp Range', value: '-20°C to +80°C' }
       ]
     },
     'valves': {
@@ -270,7 +331,7 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
     'rosemount': {
       title: 'Pressure Transmitter',
       description: 'Ultra-high performance pressure transmitter with coplanar design for demanding flow and level applications.',
-      icon: BarChart3,
+      icon: Gauge,
       features: [
         'Coplanar design for space efficiency',
         'Ultra-high accuracy (±0.025%)',
@@ -398,7 +459,18 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="relative py-16 md:py-20 bg-gradient-to-br from-[#0073bc] to-[#005a94] text-white">
+      <section className="relative py-16 md:py-20 bg-gradient-to-br from-[#0073bc] to-[#005a94] text-white overflow-hidden">
+        {/* Absolute Get Quote Button - Top Right of Hero */}
+        <div className="absolute top-4 right-4 md:top-8 md:right-8 z-30">
+          <button
+            onClick={() => handleGetQuote(page.title)}
+            className="bg-white text-[#0073bc] hover:bg-blue-50 font-bold py-2 px-6 md:py-3 md:px-8 rounded-full shadow-lg transition-transform transform hover:scale-105 flex items-center space-x-2"
+          >
+            <span>Get Quote</span>
+            <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
+          </button>
+        </div>
+
         <div className="absolute inset-0 bg-black/20" />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <MotionFadeUp>
@@ -414,8 +486,9 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
       </section>
 
       {/* Product Galleries by Category */}
-      {variant === 'flow-meters' && renderGallery('Flow Meters', 'Explore our complete lineup of flow meters')}
-      {variant === 'analyzers' && renderGallery('Analyzers & Transmitters', 'Advanced analyzers and transmitters for continuous monitoring')}
+      {variant === 'flow-meters' && renderGallery('Flow', 'Explore our complete lineup of flow meters')}
+      {variant === 'analyzers' && renderGallery('Analyzers', 'Advanced analyzers and transmitters for continuous monitoring')}
+      {variant === 'levels' && renderGallery('Levels', 'Accurate and reliable level measurement solutions')}
       {variant === 'valves' && renderGallery('Valves & Piping', 'Engineered valves and piping solutions for critical applications')}
       {variant === 'automation' && renderGallery('Automation (IoT / PLC / RTU / SCADA)', 'Integrated automation platforms for intelligent water management')}
       {variant === 'cameras' && renderGallery('Cameras & Vision', 'Rugged vision and surveillance systems for utilities')}
@@ -531,6 +604,21 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
           </div>
         </div>
       </section>
+
+      {/* Floating Download Button */}
+      {/* Floating Download Button */}
+      <a
+        href="/assets/docs/Orbit_Brochure.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 bg-[#ff6b00] text-white font-bold py-3 px-6 rounded-full shadow-[0_4px_14px_0_rgba(255,107,0,0.39)] hover:shadow-[0_6px_20px_rgba(255,107,0,0.23)] hover:bg-[#e65100] transition-all transform hover:-translate-y-1 flex items-center space-x-2 border-2 border-white/20"
+      >
+        <Download className="w-5 h-5" />
+        <span>View Brochure</span>
+      </a>
+
+      {/* Quote Modal */}
+      <QuoteModal open={isQuoteModalOpen} onClose={() => setIsQuoteModalOpen(false)} productName={quoteProductName} />
     </div>
   );
 }
