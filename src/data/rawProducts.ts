@@ -55,6 +55,7 @@ import pressureSensor2 from '../assets/products/pressure sensor-2.png';
 import pressureSensor1 from '../assets/products/pressure-sensor-1.png';
 import pressureSensorDiff from '../assets/products/pressure-sensor-.png';
 import submersibleLevelTransmitter from '../assets/products/level-transmitter.png';
+import controlValve from '../assets/products/control-valves-1.png';
 
 
 
@@ -480,6 +481,20 @@ export const RAW_SUB_PRODUCTS = [
           'Low maintenance requirements',
           'Available in sizes up to 24" (600 mm)',
           'Reliable long-term operation'
+        ]
+      },
+      {
+        name: 'Control Valve',
+        image: controlValve,
+        paragraphs: [
+          'A Control Valve is a final control element used to regulate flow, pressure, level, or temperature of fluids in a process system. It operates by adjusting the valve opening based on a control signal from a PLC, DCS, or controller. The valve shown is a globe-type control valve with a pneumatic actuator and positioner, designed for precise and stable control.'
+        ],
+        bullets: [
+          'Valve Body: Controls fluid flow',
+          'Pneumatic Actuator: Converts air pressure into valve movement',
+          'Valve Positioner: Ensures accurate valve positioning',
+          'Stem & Plug: Regulates flow through the valve',
+          'Air Regulator & Gauges: Maintains stable air supply'
         ]
       }
     ]

@@ -12,7 +12,7 @@ import iconETP from '../assets/icon/Effluent Treatment Plants.png';
 import iconPLC from '../assets/icon/plc-control-panel.png';
 import iconIoT from '../assets/icon/iot-sensors.png';
 import iconSolar from '../assets/products/solar-panel.jpg';
-import iconChlorinator from '../assets/products/chlorinator.png';
+import iconChlorinator from '../assets/products/chlorinator.jpg';
 import iconFlowMeter from '../assets/products/electromagnetic-flow-meter.jpg';
 import iconAnalyzer from '../assets/products/ph-analyzer.png';
 import iconValve from '../assets/products/butter-fly-valves.jpg';
