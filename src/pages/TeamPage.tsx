@@ -7,8 +7,8 @@ import SEO from '../components/SEO';
 // ourTeamIcon removed: using shared HeroSection component instead
 import manojImg from '../assets/team/manoj-tiwari.jpeg';
 import vijayImg from '../assets/team/vijay-tiwari-2.jpg';
-import office2 from '../assets/Office-2.png';
-import reception from '../assets/reception.png';
+import office2 from '../assets/Office-2.jpeg';
+import reception from '../assets/reception.jpeg';
 
 function OfficeImages() {
   const slideRight = {

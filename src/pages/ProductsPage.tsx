@@ -16,12 +16,12 @@ import iconIoT from '../assets/icon/iot-sensors.png';
 import iconSolar from '../assets/products/solar-panel.jpg';
 import iconChlorinator from '../assets/products/chlorinator.jpg';
 import iconFlowMeter from '../assets/products/electromagnetic-flow-meter.jpg';
-import iconAnalyzer from '../assets/products/ph-analyzer.png';
+import iconAnalyzer from '../assets/products/ph-analyzer.jpeg';
 import iconValve from '../assets/products/butter-fly-valves.jpg';
 import iconCamera from '../assets/products/bullet-camera.jpg';
 import iconJointing from '../assets/products/electrofusion.jpeg';
 import iconPressure from '../assets/products/rosemount-3051s-series-coplanar-pressure-transmitter.jpg';
-import iconTransformer from '../assets/products/distribution-transformer.png';
+import iconTransformer from '../assets/products/distribution-transformer.jpeg';
 import iconLevel from '../assets/products/ultrasonic-level-tx.jpg';
 // Raw products now live in src/data/rawProducts to avoid HMR issues
 

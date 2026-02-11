@@ -5,12 +5,12 @@ import QuoteModal from '../components/QuoteModal';
 import BrochureModal from '../components/BrochureModal';
 
 // Images
-import electricMultiTurn from '../assets/products/electirc multiturn.png';
-import multiTurn from '../assets/products/multi turn.png';
-import multiTurnActuator2 from '../assets/products/multiturn - actuator.png';
-import partTurnActuator from '../assets/products/part turn actuator.png';
+import electricMultiturn from '../assets/products/electric-multiturn.jpeg';
+import multiTurnActuator from '../assets/products/multi-turn-actuator.jpeg';
+import multiTurnElectricActuator from '../assets/products/multi-turn-electric actuator.png';
+import partTurnActuator from '../assets/products/part turn actuator.jpeg';
 import partTurn from '../assets/products/part turn.png';
-import partTurnActuator2 from '../assets/products/part-turn-actuator.png';
+import partTurnActuator2 from '../assets/products/part-turn-actuator.jpeg';
 
 interface SlideData {
     image: string;
@@ -30,7 +30,7 @@ const sections: SectionData[] = [
         description: 'Designed for gate, globe, and sluice valves requiring linear motion and high torque.',
         slides: [
             {
-                image: electricMultiTurn,
+                image: electricMultiturn,
                 name: 'Electric Multi Turn Actuator',
                 details: [
                     'Type: Electric Multi-Turn',
@@ -43,7 +43,7 @@ const sections: SectionData[] = [
                 ]
             },
             {
-                image: multiTurn,
+                image: multiTurnActuator,
                 name: 'Multi Turn Actuator',
                 details: [
                     'Classification: Electric Multi-Turn',
@@ -55,7 +55,7 @@ const sections: SectionData[] = [
                 ]
             },
             {
-                image: multiTurnActuator2,
+                image: multiTurnElectricActuator,
                 name: 'Multi Turn Electric Actuator',
                 details: [
                     'Industry Use: Energy, Water, Industrial Applications',
