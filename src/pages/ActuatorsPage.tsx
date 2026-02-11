@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Settings, CheckCircle, ArrowRight, Download } from 'lucide-react';
 import { AnimatedHeading, MotionFadeUp } from '../components/Animated';
 import QuoteModal from '../components/QuoteModal';
+import BrochureModal from '../components/BrochureModal';
 
 // Images
 import electricMultiTurn from '../assets/products/electirc multiturn.png';
@@ -122,6 +123,7 @@ const sections: SectionData[] = [
 export default function ActuatorsPage() {
     const [expandedMap, setExpandedMap] = useState<Record<string, boolean>>({});
     const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+    const [isBrochureModalOpen, setIsBrochureModalOpen] = useState(false);
     const [quoteProductName, setQuoteProductName] = useState('');
 
     const toggleExpanded = (key: string) => {
@@ -174,7 +176,7 @@ export default function ActuatorsPage() {
                             <p className="text-lg text-gray-600">{section.description}</p>
                         </div>
 
-                        <div className="flex flex-wrap justify-center gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                             {section.slides.map((item, idx) => {
                                 const key = `${section.title}-${idx}`;
                                 const isExpanded = !!expandedMap[key];
@@ -182,7 +184,7 @@ export default function ActuatorsPage() {
                                 return (
                                     <MotionFadeUp
                                         key={idx}
-                                        className="w-full md:w-[48%] lg:w-[31%] group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col h-full min-h-[420px]"
+                                        className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col h-full min-h-[420px]"
                                     >
                                         <div className="bg-gray-50 flex items-center justify-center p-6 h-[250px]">
                                             <img
@@ -241,16 +243,24 @@ export default function ActuatorsPage() {
                 </div>
             </section>
 
-            {/* Floating Download Button */}
-            <a
-                href="/assets/docs/Orbit_Brochure.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="fixed bottom-6 right-6 z-50 bg-[#ff6b00] text-white font-bold py-3 px-6 rounded-full shadow-[0_4px_14px_0_rgba(255,107,0,0.39)] hover:shadow-[0_6px_20px_rgba(255,107,0,0.23)] hover:bg-[#e65100] transition-all transform hover:-translate-y-1 flex items-center space-x-2 border-2 border-white/20"
-            >
-                <Download className="w-5 h-5" />
-                <span>View Brochure</span>
-            </a>
+            {/* Floating Buttons */}
+            <div className="fixed bottom-24 right-8 z-50 flex flex-col items-end space-y-3">
+                {/* Download Brochure - Lead gated */}
+                <button
+                    onClick={() => setIsBrochureModalOpen(true)}
+                    className="bg-[#ff6b00] text-white font-bold py-3 px-6 rounded-full shadow-[0_4px_14px_0_rgba(255,107,0,0.39)] hover:shadow-[0_6px_20px_rgba(255,107,0,0.23)] hover:bg-[#e65100] transition-all transform hover:-translate-y-1 flex items-center space-x-2 border-2 border-white/20"
+                >
+                    <Download className="w-5 h-5" />
+                    <span>Download Brochure</span>
+                </button>
+            </div>
+
+            {/* Brochure Modal */}
+            <BrochureModal
+                open={isBrochureModalOpen}
+                onClose={() => setIsBrochureModalOpen(false)}
+                brochureUrl="/assets/docs/brochure.pdf"
+            />
 
             {/* Quote Modal */}
             <QuoteModal open={isQuoteModalOpen} onClose={() => setIsQuoteModalOpen(false)} productName={quoteProductName} />

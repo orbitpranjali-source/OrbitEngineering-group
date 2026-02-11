@@ -13,6 +13,7 @@ import hydrostaticLevelTx from '../assets/products/hydrostatic-level-tx.jpg';
 import capacitanceLevelTransmitter from '../assets/products/capacitance-level-transmitter.jpg';
 import conductiveLevelSwitch from '../assets/products/conductive-level-switch.jpg';
 import floatLevelSwitch from '../assets/products/float-level-switch.jpg';
+import couplingLevelSwitch from '../assets/products/coupling switch.png';
 import blindTypePressureTransmitters from '../assets/products/blind-type-pressure-transmitters.jpg';
 import butterflyValves from '../assets/products/butter-fly-valves.jpg';
 import gateValve from '../assets/products/gate-valve.jpg';
@@ -56,6 +57,13 @@ import pressureSensor1 from '../assets/products/pressure-sensor-1.png';
 import pressureSensorDiff from '../assets/products/pressure-sensor-.png';
 import submersibleLevelTransmitter from '../assets/products/level-transmitter.png';
 import controlValve from '../assets/products/control-valves-1.png';
+import soxAnalyzer from '../assets/products/sox analyzer.png';
+import noxAnalyzer from '../assets/products/nox analyzer.jpg';
+import pm10Analyzer from '../assets/products/pm10.jpg.jpeg';
+import pm25Analyzer from '../assets/products/pm2.5.png';
+import coAnalyzer from '../assets/products/co analyzer.jpg';
+import co2Analyzer from '../assets/products/co2 analyzer.jpg';
+import methaneAnalyzer from '../assets/products/methane-gas-analyzer..jpeg';
 
 
 
@@ -306,7 +314,104 @@ export const RAW_SUB_PRODUCTS = [
       },
     ]
   },
-
+  {
+    category: 'Air Quality Analyzers',
+    items: [
+      {
+        name: 'SOx Analyzer (Sulfur Oxides Analyzer)',
+        image: soxAnalyzer,
+        paragraphs: [
+          'An SOx Analyzer is an industrial gas analysis instrument used to continuously measure sulfur oxides (mainly SO₂ and SO₃) in flue gas or exhaust emissions. It helps industries monitor air pollution, ensure regulatory compliance, and optimize combustion and process efficiency.',
+          'The analyzer continuously samples flue gas, measures SOx concentration, and displays the values while also transmitting signals to PLC / DCS / SCADA systems.'
+        ],
+        bullets: [
+          'Continuous and real-time SOx measurement',
+          'High accuracy and long-term stability',
+          'Suitable for harsh industrial environments',
+          'Digital display with easy menu operation',
+          'Supports remote monitoring and data logging',
+          'Designed for continuous operation (24/7)'
+        ]
+      },
+      {
+        name: 'NOx Analyzer (Nitrogen Oxides Analyzer)',
+        image: noxAnalyzer,
+        paragraphs: [
+          'A NOx Analyzer is an industrial gas analysis instrument used to continuously measure nitrogen oxides (NO and NO₂, expressed as NOx) in flue gas or exhaust gas. It is widely used to monitor air emissions, ensure pollution control compliance, and optimize combustion efficiency in industrial processes.',
+          'The analyzer provides real-time measurement, local display, and output signals to PLC / DCS / SCADA systems.'
+        ],
+        bullets: [
+          'Working Principle: Flue gas sample is extracted from the stack, Sample gas is filtered, cooled, and dried, NOx concentration is measured using UV absorption / chemiluminescence technology, Measured values are converted into electrical output signals'
+        ]
+      },
+      {
+        name: 'PM10 Analyzer (Particulate Matter Analyzer)',
+        image: pm10Analyzer,
+        paragraphs: [
+          'A PM10 Analyzer is an air monitoring instrument used to continuously measure particulate matter with aerodynamic diameter ≤10 microns (PM10) present in ambient air. These fine dust particles can penetrate the respiratory system and are critical indicators of air pollution and public health impact.',
+          'The system is typically installed outdoors in a weatherproof cabinet with a sampling inlet, suction system, and measuring module.'
+        ],
+        bullets: [
+          'Working Principle: PM10 analyzers generally work on one of the following principles: Gravimetric Method (Beta Attenuation Monitor – BAM): Measures mass concentration by attenuation of beta radiation through collected particles. Optical / Light Scattering Method: Measures particle concentration by analyzing scattered light from particles in the air stream. Air is drawn through a PM10 size-selective inlet, ensuring only particles ≤10 µm are measured.'
+        ]
+      },
+      {
+        name: 'PM2.5 Analyzer (Particulate Matter 2.5 Micron Analyzer)',
+        image: pm25Analyzer,
+        paragraphs: [
+          'A PM2.5 Analyzer is used to continuously measure fine particulate matter with aerodynamic diameter ≤2.5 microns (PM2.5) present in ambient air. These ultra-fine particles can penetrate deep into the lungs and bloodstream, making PM2.5 a critical air quality parameter for environmental and public health monitoring.',
+          'The analyzer is installed with a PM2.5 size-selective inlet, sampling system, and control unit for reliable long-term outdoor operation.'
+        ],
+        bullets: [
+          'Working Principle: PM2.5 analyzers typically operate using: Beta Attenuation Method (BAM): Measures particle mass by beta radiation absorption through collected particles. Optical / Light Scattering Method: Determines particle concentration by analyzing scattered light. Only particles ≤2.5 µm are allowed through the inlet for measurement.'
+        ]
+      }
+    ]
+  },
+  {
+    category: 'Gas Analyzers',
+    items: [
+      {
+        name: 'Carbon Monoxide (CO) Gas Analyzer',
+        image: coAnalyzer,
+        paragraphs: [
+          'A Portable CO Gas Analyzer is a field-use analytical instrument designed to measure carbon monoxide (CO) concentration in flue gas, exhaust gas, or ambient air. Housed in a rugged suitcase enclosure, it is ideal for on-site measurements, inspections, audits, and temporary monitoring where fixed analyzers are not practical.',
+          'The analyzer draws gas through a sampling probe using an internal pump, displays real-time readings, and can store data for reporting.'
+        ],
+        bullets: [
+          'Working Principle: Gas sample is extracted using a probe and tubing, Sample passes through filters and moisture traps, CO concentration is measured using an electrochemical or NDIR sensor (model dependent), Results are displayed and logged digitally'
+        ]
+      },
+      {
+        name: 'Carbon Dioxide (CO₂) Gas Analyzer',
+        image: co2Analyzer,
+        paragraphs: [
+          'A Portable O₂ & CO₂ Gas Analyzer is a handheld measuring instrument designed for on-site analysis of oxygen and carbon dioxide concentrations in gas samples. It is widely used for environmental monitoring, water & wastewater treatment, industrial process checks, and laboratory applications.',
+          'The unit uses an internal sampling pump to draw gas through a probe and displays real-time values on a digital screen.'
+        ],
+        bullets: [
+          'Simultaneous measurement of O₂ and CO₂',
+          'Compact, lightweight, handheld design',
+          'Built-in sampling pump with probe',
+          'Clear LCD display with real-time readings',
+          'Simple keypad operation and menu navigation',
+          'Battery-operated for field use',
+          'Data storage and calibration functions'
+        ]
+      },
+      {
+        name: 'CH₄ Gas Analyzer (Methane Analyzer)',
+        image: methaneAnalyzer,
+        paragraphs: [
+          'A CH₄ Gas Analyzer is used to measure methane (CH₄) concentration in gas streams. Methane is a key component of biogas and natural gas and also an important greenhouse gas, so continuous monitoring is essential for process control, safety, and environmental compliance.',
+          'The analyzer provides real-time methane concentration on a digital display and transmits output signals to PLC / DCS / SCADA systems.'
+        ],
+        bullets: [
+          'Working Principle: Gas sample is introduced into the analyzer, Methane concentration is measured using NDIR (Non-Dispersive Infrared) technology, CH₄ absorbs infrared radiation at a specific wavelength, The absorbed signal is converted into a concentration value (% vol or ppm)'
+        ]
+      }
+    ]
+  },
   {
     category: 'Level Transmitter',
     items: [
@@ -345,7 +450,7 @@ export const RAW_SUB_PRODUCTS = [
         ]
       },
       {
-        name: 'Ultrasonic Level Transmitter',
+        name: 'Ultrasonic Level Transmitter (Local Type)',
         image: ultrasonicLevelTx,
         bullets: [
           '2- or 4-wire integrated transmitter',
@@ -403,6 +508,16 @@ export const RAW_SUB_PRODUCTS = [
           'Mercury free micro switch',
           'Adjustable switch differential',
           'For low density liquids'
+        ]
+      },
+      {
+        name: 'Coupling Level Switch',
+        image: couplingLevelSwitch,
+        paragraphs: [
+          'A Coupling Type Float Level Switch is a mechanical level-sensing device used to detect high or low liquid levels in tanks, vessels, and sumps. It is mounted using a threaded coupling and works on the buoyancy principle. As the liquid level rises or falls, the float moves and actuates an internal switch to provide an ON/OFF electrical output.'
+        ],
+        bullets: [
+          'Working Principle: The float moves with the liquid level, the movement is transferred through a lever mechanism, a micro switch or reed switch changes its contact state, and the output signal is used for pump control or alarm systems.'
         ]
       }
     ]

@@ -4,6 +4,7 @@ import { Gauge, Activity, Zap, Camera, Wrench, CheckCircle, ArrowRight, FlaskCon
 import { RAW_SUB_PRODUCTS } from '../data/rawProducts';
 import { MotionFadeUp, AnimatedHeading } from '../components/Animated';
 import QuoteModal from '../components/QuoteModal';
+import BrochureModal from '../components/BrochureModal';
 
 interface ProductInfoPageProps {
   variant?: string;
@@ -37,6 +38,7 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
   const variant = urlVariant; // Use URL param as the source of truth
   const [expandedMap, setExpandedMap] = useState<Record<string, boolean>>({});
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+  const [isBrochureModalOpen, setIsBrochureModalOpen] = useState(false);
   const [quoteProductName, setQuoteProductName] = useState('');
 
   const toggleExpanded = (key: string) => {
@@ -64,7 +66,10 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Product Range</h2>
             <p className="text-lg text-gray-600">{subtitle}</p>
           </div>
-          <div className="flex flex-wrap justify-center gap-4 md:gap-5">
+          <div className={isTwoColumnLayout
+            ? "grid grid-cols-1 md:grid-cols-2 gap-6"
+            : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          }>
             {items.map((item, idx) => {
               const key = `${categoryName}-${idx}`;
               const isExpanded = !!expandedMap[key];
@@ -72,13 +77,8 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
               const hasBullets = Array.isArray(item.bullets) && item.bullets.length > 0;
               const hasDetails = (!!firstParagraph) || hasBullets;
 
-              // Dynamic width class based on layout requirement
-              const widthClass = isTwoColumnLayout
-                ? "w-full md:w-[48%]" // Stacks on small screens, 2-col on MD+
-                : "w-full sm:w-[48%] lg:w-[31%]"; // Stacks on small, 2-col on SM/MD, 3-col on LG
-
               return (
-                <MotionFadeUp key={idx} className={`${widthClass} group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col h-full min-h-[420px]`}>
+                <MotionFadeUp key={idx} className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col h-full min-h-[420px]">
                   <div className="bg-gray-50 flex items-center justify-center p-6">
                     <img src={item.image} alt={item.name} className="h-[220px] w-full object-contain rounded-lg transition-transform duration-500 group-hover:scale-105" loading="lazy" />
                   </div>
@@ -527,6 +527,56 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
         { parameter: 'Frame Material', value: 'Anodized Aluminium' },
         { parameter: 'Rated Life Span', value: '25 Years' }
       ]
+    },
+    'air-quality-analyzers': {
+      title: 'Air Quality Analyzers',
+      description: 'Advanced monitoring systems for SOx, NOx, PM10, and PM2.5 to ensure environmental compliance and safety.',
+      icon: Gauge,
+      features: [
+        'Real-time pollutant monitoring',
+        'High precision sensors',
+        'Robust outdoor design',
+        'Data logging and remote access',
+        'Compliance with environmental standards'
+      ],
+      applications: [
+        'Industrial emissions monitoring',
+        'Urban air quality networks',
+        'Construction site monitoring',
+        'Traffic pollution analysis',
+        'Environmental research'
+      ],
+      specifications: [
+        { parameter: 'Parameters', value: 'SOx, NOx, PM10, PM2.5' },
+        { parameter: 'Measurement Tech', value: 'UV Fluorescence, Chemiluminescence, Beta Attenuation' },
+        { parameter: 'Output', value: '4-20mA, RS485, Ethernet' },
+        { parameter: 'Power', value: '230V AC / 24V DC' }
+      ]
+    },
+    'gas-analyzers': {
+      title: 'Gas Analyzers',
+      description: 'Portable and fixed gas analyzers for CO, CO2, Methane, and other industrial gases.',
+      icon: FlaskConical,
+      features: [
+        'Multi-gas detection capability',
+        'Portable and fixed models',
+        'High sensitivity NDIR/Electrochemical sensors',
+        'User-friendly interface',
+        'Alarm and safety functions'
+      ],
+      applications: [
+        'Confined space entry',
+        'Process gas analysis',
+        'Leak detection',
+        'Biogas monitoring',
+        'Combustion efficiency'
+      ],
+      specifications: [
+        { parameter: 'Gases Detected', value: 'CO, CO2, CH4, O2, H2S' },
+        { parameter: 'Range', value: 'ppm to % vol depending on gas' },
+        { parameter: 'Response Time', value: '< 30 seconds' },
+        { parameter: 'Battery Life', value: '> 10 hours (Portable)' }
+      ]
     }
   };
 
@@ -573,6 +623,8 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
       {/* Product Galleries by Category */}
       {variant === 'flow-meters' && renderGallery('Flow', 'Explore our complete lineup of flow meters')}
       {variant === 'analyzers' && renderGallery('Analyzers', 'Advanced analyzers and transmitters for continuous monitoring')}
+      {variant === 'air-quality-analyzers' && renderGallery('Air Quality Analyzers', 'Advanced systems for emissions and ambient air monitoring')}
+      {variant === 'gas-analyzers' && renderGallery('Gas Analyzers', 'Precision gas analysis for safety and process control')}
 
       {/* Levels Pages */}
       {variant === 'levels' && (
@@ -711,17 +763,24 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
         </div>
       </section>
 
-      {/* Floating Download Button */}
-      {/* Floating Download Button */}
-      <a
-        href="/assets/docs/Orbit_Brochure.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-50 bg-[#ff6b00] text-white font-bold py-3 px-6 rounded-full shadow-[0_4px_14px_0_rgba(255,107,0,0.39)] hover:shadow-[0_6px_20px_rgba(255,107,0,0.23)] hover:bg-[#e65100] transition-all transform hover:-translate-y-1 flex items-center space-x-2 border-2 border-white/20"
-      >
-        <Download className="w-5 h-5" />
-        <span>View Brochure</span>
-      </a>
+      {/* Floating Buttons */}
+      <div className="fixed bottom-24 right-8 z-50 flex flex-col items-end space-y-3">
+        {/* Download Brochure - Lead gated */}
+        <button
+          onClick={() => setIsBrochureModalOpen(true)}
+          className="bg-[#ff6b00] text-white font-bold py-3 px-6 rounded-full shadow-[0_4px_14px_0_rgba(255,107,0,0.39)] hover:shadow-[0_6px_20px_rgba(255,107,0,0.23)] hover:bg-[#e65100] transition-all transform hover:-translate-y-1 flex items-center space-x-2 border-2 border-white/20"
+        >
+          <Download className="w-5 h-5" />
+          <span>Download Brochure</span>
+        </button>
+      </div>
+
+      {/* Brochure Modal */}
+      <BrochureModal
+        open={isBrochureModalOpen}
+        onClose={() => setIsBrochureModalOpen(false)}
+        brochureUrl="/assets/docs/brochure.pdf"
+      />
 
       {/* Quote Modal */}
       <QuoteModal open={isQuoteModalOpen} onClose={() => setIsQuoteModalOpen(false)} productName={quoteProductName} />

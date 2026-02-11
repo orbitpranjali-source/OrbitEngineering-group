@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Menu, X, ChevronDown, Waves, Activity, Settings, Cpu, Camera, Wrench, Gauge, Droplets, Grid, Zap, Sun, RotateCw } from 'lucide-react';
+import { Menu, X, ChevronDown, Waves, Activity, Settings, Cpu, Camera, Wrench, Gauge, Droplets, Grid, Zap, Sun, RotateCw, FlaskConical } from 'lucide-react';
 import logo2 from '/src/assets/Orbit LOGO.png';
 
 interface HeaderProps {
@@ -49,7 +49,16 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
 
   const productCategories = [
     { label: 'Flow', page: 'product-info:flow-meters', icon: FlowMeterIcon },
-    { label: 'Analyzers', page: 'product-info:analyzers', icon: Activity },
+    {
+      label: 'Analyzers',
+      page: 'product-info:analyzers',
+      icon: Activity,
+      subCategories: [
+        { label: 'Water / Effluent Quality Analyzers', page: 'product-info:analyzers', icon: Activity },
+        { label: 'Air Quality Analyzers', page: 'product-info:air-quality-analyzers', icon: Gauge },
+        { label: 'Gas Analyzers', page: 'product-info:gas-analyzers', icon: FlaskConical }
+      ]
+    },
     {
       label: 'Levels',
       page: 'product-info:levels',

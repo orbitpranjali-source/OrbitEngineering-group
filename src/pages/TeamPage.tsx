@@ -168,16 +168,18 @@ export default function TeamPage() {
 
 
                 {member.photo ? (
-                  <img
-                    src={member.photo}
-                    alt={`${member.name} - ${member.role} at Orbit Engineering Group Bhopal`}
-                    className="w-36 h-36 rounded-full object-cover mx-auto mb-6 ring-4 ring-[#0073bc]/10 shadow-sm"
-                    loading="lazy"
-                    style={{ objectPosition: (member as any).imagePosition || 'center' }}
-                  />
+                  <div className="w-48 h-48 mx-auto mb-8 overflow-hidden rounded-2xl shadow-lg border-2 border-gray-100 flex-shrink-0">
+                    <img
+                      src={member.photo}
+                      alt={`${member.name} - ${member.role} at Orbit Engineering Group Bhopal`}
+                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                      loading="lazy"
+                      style={{ objectPosition: (member as any).imagePosition || 'center' }}
+                    />
+                  </div>
                 ) : (
-                  <div className="bg-gradient-to-br from-[#0073bc] to-[#005a94] rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-6">
-                    <span className="text-3xl font-bold text-white">
+                  <div className="bg-gradient-to-br from-[#0073bc] to-[#005a94] rounded-2xl w-48 h-48 flex items-center justify-center mx-auto mb-8 shadow-lg">
+                    <span className="text-4xl font-bold text-white">
                       {member.name.split(' ').map(n => n[0]).join('')}
                     </span>
                   </div>
