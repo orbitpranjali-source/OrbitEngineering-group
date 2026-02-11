@@ -595,16 +595,7 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <section className="relative py-16 md:py-20 bg-gradient-to-br from-[#0073bc] to-[#005a94] text-white overflow-hidden">
-        {/* Absolute Get Quote Button - Top Right of Hero */}
-        <div className="absolute top-4 right-4 md:top-8 md:right-8 z-30">
-          <button
-            onClick={() => handleGetQuote(page.title)}
-            className="bg-white text-[#0073bc] hover:bg-blue-50 font-bold py-2 px-6 md:py-3 md:px-8 rounded-full shadow-lg transition-transform transform hover:scale-110 flex items-center space-x-2"
-          >
-            <span>Get Quote</span>
-            <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
-          </button>
-        </div>
+
 
         <div className="absolute inset-0 bg-black/20" />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -614,7 +605,17 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
                 <IconComponent className="w-10 h-10" />
               </div>
               <AnimatedHeading level={1} className="text-4xl md:text-5xl font-bold mb-4">{page.title}</AnimatedHeading>
-              <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">{page.description}</p>
+              <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed mb-10">{page.description}</p>
+
+              <div className="flex justify-center">
+                <button
+                  onClick={() => handleGetQuote(page.title)}
+                  className="bg-white text-[#0073bc] hover:bg-blue-50 font-bold py-4 px-10 rounded-full shadow-xl transition-all transform hover:scale-105 hover:shadow-2xl flex items-center space-x-3 active:scale-95 group"
+                >
+                  <span className="text-lg">Get Quote</span>
+                  <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                </button>
+              </div>
             </div>
           </MotionFadeUp>
         </div>
@@ -764,14 +765,21 @@ export default function ProductInfoPage({ onNavigate }: ProductInfoPageProps) {
       </section>
 
       {/* Floating Buttons */}
-      <div className="fixed bottom-24 right-8 z-50 flex flex-col items-end space-y-3">
-        {/* Download Brochure - Lead gated */}
+      <div className="fixed bottom-24 right-4 md:right-8 z-50">
+        {/* Download Brochure - Enhanced floating button */}
         <button
           onClick={() => setIsBrochureModalOpen(true)}
-          className="bg-[#ff6b00] text-white font-bold py-3 px-6 rounded-full shadow-[0_4px_14px_0_rgba(255,107,0,0.39)] hover:shadow-[0_6px_20px_rgba(255,107,0,0.23)] hover:bg-[#e65100] transition-all transform hover:-translate-y-1 flex items-center space-x-2 border-2 border-white/20"
+          className="group relative flex items-center px-5 py-2.5 md:px-6 md:py-3 bg-gradient-to-r from-[#0073bc] to-[#005a94] text-white font-bold rounded-full shadow-[0_10px_40px_rgba(0,115,188,0.4)] hover:shadow-[0_15px_50px_rgba(0,115,188,0.6)] transition-all duration-300 hover:-translate-y-1.5 active:scale-95 border-2 border-white/30 overflow-hidden backdrop-blur-sm"
+          title="Download Brochure"
         >
-          <Download className="w-5 h-5" />
-          <span>Download Brochure</span>
+          {/* Constant Shine Animation */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12 animate-shine opacity-60"></div>
+
+          <Download className="w-5 h-5 mr-2 drop-shadow-md" />
+          <span className="text-sm md:text-base whitespace-nowrap drop-shadow-sm">Brochure</span>
+
+          {/* Subtle Outer Glow */}
+          <div className="absolute inset-[-2px] rounded-full border border-white/20 pointer-events-none group-hover:border-white/40 transition-colors"></div>
         </button>
       </div>
 

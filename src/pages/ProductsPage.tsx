@@ -1,9 +1,11 @@
-import { Droplets, Zap, Gauge, ThermometerSun, Activity, FlaskConical, Wrench, Camera, BarChart3, Sun, Droplet } from 'lucide-react';
+import { useState } from 'react';
+import { Droplets, Zap, Gauge, ThermometerSun, Activity, FlaskConical, Wrench, Camera, BarChart3, Sun, Droplet, Download } from 'lucide-react';
 import HeroSection from '../components/HeroSection';
 import subHeadingImage from '../assets/products/sub-heading.jpg';
 import productsHeroBg from '../assets/products/hero-section.jpg';
 import { motion } from 'framer-motion';
 import SEO from '../components/SEO';
+import BrochureModal from '../components/BrochureModal';
 // iconProductsSolutions removed; hero uses shared HeroSection
 import iconWTP from '../assets/icon/Water Treatment Plants.png';
 import iconSTP from '../assets/icon/Sewage Treatment Plants.png';
@@ -32,6 +34,7 @@ interface ProductsPageProps {
 export default function ProductsPage({ onNavigate }: ProductsPageProps) {
   // mark prop as used to satisfy TypeScript when parent passes navigation handler
   void onNavigate;
+  const [isBrochureModalOpen, setIsBrochureModalOpen] = useState(false);
   const productCategories = [
     {
       icon: Droplets,
@@ -487,6 +490,26 @@ export default function ProductsPage({ onNavigate }: ProductsPageProps) {
 
         </div>
       </section>
+
+      {/* Floating Buttons */}
+      <div className="fixed bottom-24 right-4 md:right-8 z-50">
+        <button
+          onClick={() => setIsBrochureModalOpen(true)}
+          className="group relative flex items-center px-5 py-2.5 md:px-6 md:py-3 bg-gradient-to-r from-[#0073bc] to-[#005a94] text-white font-bold rounded-full shadow-[0_10px_40px_rgba(0,115,188,0.4)] hover:shadow-[0_15px_50px_rgba(0,115,188,0.6)] transition-all duration-300 hover:-translate-y-1.5 active:scale-95 border-2 border-white/30 overflow-hidden backdrop-blur-sm"
+          title="Download Brochure"
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12 animate-shine opacity-60"></div>
+          <Download className="w-5 h-5 mr-2 drop-shadow-md" />
+          <span className="text-sm md:text-base whitespace-nowrap drop-shadow-sm">Brochure</span>
+          <div className="absolute inset-[-2px] rounded-full border border-white/20 pointer-events-none group-hover:border-white/40 transition-colors"></div>
+        </button>
+      </div>
+
+      <BrochureModal
+        open={isBrochureModalOpen}
+        onClose={() => setIsBrochureModalOpen(false)}
+        brochureUrl="/assets/docs/brochure.pdf"
+      />
     </div>
   );
 }

@@ -68,6 +68,13 @@ function AppContent() {
     else if (path === 'faq') targetPath = '/solutions';
     else if (path === 'team') targetPath = '/team';
     else if (path === 'contact') targetPath = '/contact';
+    else if (path === 'brochure') {
+      // Find any open brochure modal or just navigate to a product page that has it
+      // For now, let's just navigate to products and maybe we can trigger it or just let the footer link be a direct download
+      // Actually, it's better if it triggers the modal. But footer is simple.
+      // Let's make it navigate to products for now, or we can handle it specifically.
+      targetPath = '/products';
+    }
     else if (path.startsWith('product-info:')) targetPath = `/products/${path.split(':')[1]}`;
     else if (path.startsWith('product:')) targetPath = `/product/${path.split(':')[1]}`;
 
