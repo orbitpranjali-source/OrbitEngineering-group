@@ -7,7 +7,7 @@ import { MotionFadeUp, AnimatedHeading } from '../components/Animated';
 import mpJalNigam from '../assets/clients/mp-jal-nigam.png';
 import bharatSarkar from '../assets/clients/bharat-sarkar.png';
 import mpudclIndoreDistrict from '../assets/clients/mpudcl-indore-district.png';
-import lupinPharmaceuticals from '../assets/clients/lupin-pharmaceuticals.png';
+import lupinPharmaceuticals from '../assets/clients/lupin-Pharmaceuticals.png';
 import vindhayachalDistillery from '../assets/clients/vindhayachal-distillery.png';
 import dblBuildcon from '../assets/clients/dbl-buildcon.png';
 import tejasConstructions from '../assets/clients/tejas-constructions.png';
